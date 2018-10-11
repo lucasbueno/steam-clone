@@ -1,45 +1,24 @@
 package br.edu.ifsc.ads.steam.ux.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuBar;
+import javafx.stage.Stage;
 
 public class MainController {
 
-	private int numClicks;
-
-	public MainController() {
-		this.numClicks = 0;
-	}
-
 	@FXML
-	Button btnSensitive;
+	MenuBar menuBar;
 
-	@FXML
-	Label lblSensitive;
+	public void exit() {
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Tem certeza que deseja sair?", ButtonType.YES,
+				ButtonType.CANCEL);
+		alert.showAndWait();
 
-	public void sensitiveClick() {
-		numClicks++;
+		if (alert.getResult() == ButtonType.YES)
+			((Stage) (menuBar.getScene().getWindow())).close();
 
-		switch (numClicks) {
-			case 1:
-				lblSensitive.setText("Ouch!");
-				break;
-			case 2:
-				lblSensitive.setText("Again?");
-				break;
-			case 3:
-				lblSensitive.setText("Please, stop!");
-				break;
-			case 4:
-				lblSensitive.setText("I died...");
-				break;
-			case 5:
-				lblSensitive.setText("Just kidding.");
-				break;
-			default:
-				lblSensitive.setText("Now I'm dead...");
-				break;
-		}
 	}
 }
