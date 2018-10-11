@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import org.controlsfx.control.PropertySheet?>
+<?import org.controlsfx.control.WorldMapView?>
 
 <VBox prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsc.ads.steam.ux.controller.MainController">
 	<children>
@@ -36,5 +34,8 @@
 				</Menu>
 			</menus>
 		</MenuBar>
+      <Button mnemonicParsing="false" onAction="#zoomIn" text="+" />
+      <Button mnemonicParsing="false" onAction="#zoomOut" text="-" />
+      <WorldMapView fx:id="map" />
 	</children>
 </VBox>

@@ -18,6 +18,7 @@
 	<classpathentry kind="lib" path="C:/Users/lucas/Documents/libs/sqlite-dialect-1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/lucas/Documents/libs/sqlite-dialect-1.0-javadoc.jar"/>
 	<classpathentry kind="lib" path="C:/Users/lucas/Documents/libs/sqlite-dialect-1.0-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lucas/Documents/libs/controlsfx-8.40.14.jar"/>
 	<classpathentry kind="lib" path="C:/Users/lucas/Documents/libs/jmetro-4.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
