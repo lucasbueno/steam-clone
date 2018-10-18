@@ -6,7 +6,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.VBox?>
-<?import org.controlsfx.control.WorldMapView?>
 
 <VBox prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsc.ads.steam.ux.controller.MainController">
 	<children>
@@ -34,8 +33,6 @@
 				</Menu>
 			</menus>
 		</MenuBar>
-      <Button mnemonicParsing="false" onAction="#zoomIn" text="+" />
-      <Button mnemonicParsing="false" onAction="#zoomOut" text="-" />
-      <WorldMapView fx:id="map" />
+      <Button fx:id="btnLocale" mnemonicParsing="false" onAction="#changeLocale" text="en-US" />
 	</children>
 </VBox>
