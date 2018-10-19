@@ -9,6 +9,7 @@ The following technologies are utilized:
   * Hibernate
   * SQLite
   * Maven
+  * Github (oh really?)
   
 The following features are available:
   * Language translations with Java ResourcesBundle
