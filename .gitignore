@@ -2,4 +2,4 @@ bin/
 .settings/
 *.db
 .classpath
-/target/
+target/
