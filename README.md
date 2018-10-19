@@ -1,7 +1,7 @@
 Steam Clone
 ============
 
-A Steam clone to teach object oriented programming.
+A Steam clone to teach object-oriented programming.
 
 The following technologies are utilized:
   * Java
