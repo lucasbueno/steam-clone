@@ -8,10 +8,8 @@ public class Strings {
 	private static String locale;
 
 	public static String get(String key) {
-		if (strings == null)
-			setBR();
 		try {
-			return strings.getString(key);
+			return getBundle().getString(key);
 		} catch (java.util.MissingResourceException ex) {
 			return "????";
 		}
@@ -29,5 +27,11 @@ public class Strings {
 	public static void setBR() {
 		strings = ResourceBundle.getBundle("br.edu.ifsc.ads.steam.properties.Strings", new Locale("pt", "BR"));
 		locale = "pt-BR";
+	}
+	
+	public static ResourceBundle getBundle() {
+		if (strings == null)
+			setBR();
+		return strings;
 	}
 }
