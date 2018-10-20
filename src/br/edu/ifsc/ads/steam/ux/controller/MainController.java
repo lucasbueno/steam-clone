@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 
@@ -19,6 +20,9 @@ public class MainController {
 
 	@FXML
 	MenuBar menuBar;
+	
+	@FXML
+	Label lblGame;
 
 	public void exit() {
 		ButtonType yes = new ButtonType(Strings.get("yes"));
@@ -46,5 +50,20 @@ public class MainController {
 		stage.getIcons().add(Images.getIcon());
 		stage.show();
 		controller.setData((Stage) (menuBar.getScene().getWindow()));
+	}
+	
+	public void openGames() throws IOException {
+		URL url = getClass().getResource("../fxml/Games.fxml");
+		FXMLLoader loader = new FXMLLoader(url, Strings.getBundle());
+		Parent root = loader.load();
+		GamesController controller = loader.getController();
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add("/br/edu/ifsc/ads/steam/ux/css/bootstrap3.css");
+		Stage stage = new Stage();
+		stage.setScene(scene);
+		stage.setTitle(Strings.get("games"));
+		stage.getIcons().add(Images.getIcon());
+		stage.show();
+		controller.setData(lblGame);
 	}
 }
