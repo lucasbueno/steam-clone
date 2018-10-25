@@ -128,7 +128,7 @@ public class HibernateSQLiteUtil implements DBUtil {
 
 	private EntityManager getDB() {
 		if (db == null)
-			db = Persistence.createEntityManagerFactory("Hibernate101PU").createEntityManager();
+			db = Persistence.createEntityManagerFactory("SteamClone").createEntityManager();
 		return db;
 	}
 

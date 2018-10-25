@@ -43,5 +43,10 @@
 			<artifactId>controlsfx</artifactId>
 			<version>8.40.14</version>
 		</dependency>
+		<dependency>
+			<groupId>com.zsoltfabok</groupId>
+			<artifactId>sqlite-dialect</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 </project>
