@@ -3,43 +3,16 @@ package br.edu.ifsc.ads.steam.database;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import br.edu.ifsc.ads.steam.entities.Developer;
 import br.edu.ifsc.ads.steam.entities.Game;
 import br.edu.ifsc.ads.steam.entities.Genre;
 import br.edu.ifsc.ads.steam.entities.Player;
 
 public class HibernateSQLiteUtil implements DBUtil {
-	private static EntityManager db;
-
-	@Override
-	public void addDeveloper(Developer dev) {
-		add(dev);
-	}
-	
-	@Override
-	public void addDevelopers(List<Developer> devList) {
-		for(Developer dev : devList)
-			add(dev);
-	}
-
-	@Override
-	public Developer getDeveloper(String name) {
-		return getDB().find(Developer.class, name);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Developer> getDevelopers() {
-		return getDB().createQuery("from Developer").getResultList();
-	}
-
-	@Override
-	public void removeDeveloper(Developer dev) {
-		remove(dev);
-	}
+	private static EntityManagerFactory dbFac;
 
 	@Override
 	public void addGenre(Genre genre) {
@@ -48,12 +21,18 @@ public class HibernateSQLiteUtil implements DBUtil {
 
 	@Override
 	public Genre getGenre(String description) {
-		return getDB().find(Genre.class, description);
+		EntityManager conn = getConn();
+		Genre genre = getConn().find(Genre.class, description);
+		conn.close();
+		return genre;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Genre> getGenres() {
-		return getDB().createQuery("from Genre").getResultList();
+		EntityManager conn = getConn();
+		List<Genre> genres = getConn().createQuery("from Genre").getResultList();
+		conn.close();
+		return genres;
 	}
 
 	@Override
@@ -65,22 +44,28 @@ public class HibernateSQLiteUtil implements DBUtil {
 	public void addGame(Game game) {
 		add(game);
 	}
-	
+
 	@Override
 	public void addGames(List<Game> gameList) {
-		for(Game game : gameList)
+		for (Game game : gameList)
 			add(game);
 	}
 
 	@Override
 	public Game getGame(String name) {
-		return getDB().find(Game.class, name);
+		EntityManager conn = getConn();
+		Game game = getConn().find(Game.class, name);
+		conn.close();
+		return game;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Game> getGames() {
-		return getDB().createQuery("from Game").getResultList();
+		EntityManager conn = getConn();
+		List<Game> games = getConn().createQuery("from Game").getResultList();
+		conn.close();
+		return games;
 	}
 
 	@Override
@@ -95,13 +80,19 @@ public class HibernateSQLiteUtil implements DBUtil {
 
 	@Override
 	public Player getPlayer(String name) {
-		return getDB().find(Player.class, name);
+		EntityManager conn = getConn();
+		Player player = getConn().find(Player.class, name);
+		conn.close();
+		return player;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Player> getPlayers() {
-		return getDB().createQuery("from Player").getResultList();
+		EntityManager conn = getConn();
+		List<Player> players = getConn().createQuery("from Player").getResultList();
+		conn.close();
+		return players;
 	}
 
 	@Override
@@ -111,39 +102,43 @@ public class HibernateSQLiteUtil implements DBUtil {
 
 	@Override
 	public void updateDB() {
-		EntityTransaction transac = getDB().getTransaction();
+		EntityManager conn = getConn();
+		EntityTransaction transac = conn.getTransaction();
 		transac.begin();
 		transac.commit();
+		conn.close();
 	}
 
 	@Override
 	public void close() {
-		if (db == null)
+		if (dbFac == null)
 			return;
-		if (!db.isOpen())
+		if (!dbFac.isOpen())
 			return;
-
-		db.close();
+		dbFac.close();
 	}
 
-	private EntityManager getDB() {
-		if (db == null)
-			db = Persistence.createEntityManagerFactory("SteamClone").createEntityManager();
-		return db;
+	private EntityManager getConn() {
+		if (dbFac == null)
+			dbFac = Persistence.createEntityManagerFactory("SteamClone");
+		return dbFac.createEntityManager();
 	}
 
 	private void add(Object object) {
-		EntityTransaction transaction = getDB().getTransaction();
-		transaction.begin();
-		getDB().persist(object);
-		transaction.commit();
+		EntityManager conn = getConn();
+		EntityTransaction transac = conn.getTransaction();
+		transac.begin();
+		conn.persist(object);
+		transac.commit();
+		conn.close();
 	}
 
 	private void remove(Object object) {
-		EntityTransaction transac = getDB().getTransaction();
+		EntityManager conn = getConn();
+		EntityTransaction transac = conn.getTransaction();
 		transac.begin();
-		getDB().remove(object);
+		conn.remove(object);
 		transac.commit();
+		conn.close();
 	}
-
 }

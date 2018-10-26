@@ -6,13 +6,6 @@ import br.edu.ifsc.ads.steam.entities.*;
 
 public interface DBUtil {
 	
-	// Developer
-	public void addDeveloper(Developer dev);
-	public void addDevelopers(List<Developer> devList);
-	public Developer getDeveloper(String name);
-	public List<Developer> getDevelopers();
-	public void removeDeveloper(Developer dev);
-	
 	// Game
 	public void addGame(Game game);
 	public void addGames(List<Game> gameList);

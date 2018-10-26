@@ -25,7 +25,7 @@ public class ProfileController {
 			Strings.setUS();
 		URL url = getClass().getResource("../fxml/Main.fxml");
 		Parent parent = (Parent) FXMLLoader.load(url, Strings.getBundle());
-		Scene scene = new Scene(parent, 800, 600);
+		Scene scene = new Scene(parent, 300, 600);
 		scene.getStylesheets().add("/br/edu/ifsc/ads/steam/ux/css/bootstrap3.css");
 		mainStage.setScene(scene);
 		((Stage) (cbLanguage.getScene().getWindow())).close();

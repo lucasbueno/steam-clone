@@ -13,17 +13,15 @@ public class Game {
 	private String name;
 	private String description;
 	private List<Genre> genres;
-	private Developer developer;
 
 	public Game() {
 	}
 
-	public Game(String name, String description, List<Genre> genres, Developer developer) {
+	public Game(String name, String description, List<Genre> genres) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.genres = genres;
-		this.developer = developer;
 	}
 
 	@Id
@@ -50,15 +48,6 @@ public class Game {
 
 	public void setGenres(List<Genre> genres) {
 		this.genres = genres;
-	}
-
-	@ManyToOne(optional = false)
-	public Developer getDeveloper() {
-		return developer;
-	}
-
-	public void setDeveloper(Developer developer) {
-		this.developer = developer;
 	}
 
 	@Override
