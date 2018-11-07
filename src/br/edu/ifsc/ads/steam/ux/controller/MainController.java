@@ -28,7 +28,7 @@ public class MainController {
 	Label lblGame;
 
 	@FXML
-	ListView listGames;
+	ListView<String> listGames;
 
 	public void exit() {
 		ButtonType yes = new ButtonType(Strings.get("yes"));
@@ -56,19 +56,6 @@ public class MainController {
 		stage.getIcons().add(Images.getIcon());
 		stage.show();
 		controller.setData((Stage) (menuBar.getScene().getWindow()));
-	}
-
-	public void openGames() throws IOException {
-		URL url = getClass().getResource("../fxml/Games.fxml");
-		FXMLLoader loader = new FXMLLoader(url, Strings.getBundle());
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add("/br/edu/ifsc/ads/steam/ux/css/bootstrap3.css");
-		Stage stage = new Stage();
-		stage.setScene(scene);
-		stage.setTitle(Strings.get("games"));
-		stage.getIcons().add(Images.getIcon());
-		stage.show();
 	}
 
 	public void setData(Player player) {

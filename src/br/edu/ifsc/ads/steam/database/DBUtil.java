@@ -26,6 +26,7 @@ public interface DBUtil {
 	public void removePlayer(Player player);
 
 	// Common
-	public void updateDB();	
-	public void close();
+	public void updateDB();
+	public void openPool();
+	public void deadPool();
 }

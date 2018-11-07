@@ -21,8 +21,9 @@ public class Main extends Application {
 	public static void main(String[] args) {
 
 //		generateData();
+		DB.conn.openPool();
 		launch(args);
-		DB.conn.close();
+		DB.conn.deadPool();
 	}
 
 	@Override

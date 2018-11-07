@@ -22,7 +22,7 @@ public class HibernateSQLiteUtil implements DBUtil {
 	@Override
 	public Genre getGenre(String description) {
 		EntityManager conn = getConn();
-		Genre genre = getConn().find(Genre.class, description);
+		Genre genre = conn.find(Genre.class, description);
 		conn.close();
 		return genre;
 	}
@@ -30,7 +30,7 @@ public class HibernateSQLiteUtil implements DBUtil {
 	@SuppressWarnings("unchecked")
 	public List<Genre> getGenres() {
 		EntityManager conn = getConn();
-		List<Genre> genres = getConn().createQuery("from Genre").getResultList();
+		List<Genre> genres = conn.createQuery("from Genre").getResultList();
 		conn.close();
 		return genres;
 	}
@@ -54,7 +54,7 @@ public class HibernateSQLiteUtil implements DBUtil {
 	@Override
 	public Game getGame(String name) {
 		EntityManager conn = getConn();
-		Game game = getConn().find(Game.class, name);
+		Game game = conn.find(Game.class, name);
 		conn.close();
 		return game;
 	}
@@ -63,7 +63,7 @@ public class HibernateSQLiteUtil implements DBUtil {
 	@Override
 	public List<Game> getGames() {
 		EntityManager conn = getConn();
-		List<Game> games = getConn().createQuery("from Game").getResultList();
+		List<Game> games = conn.createQuery("from Game").getResultList();
 		conn.close();
 		return games;
 	}
@@ -81,7 +81,7 @@ public class HibernateSQLiteUtil implements DBUtil {
 	@Override
 	public Player getPlayer(String name) {
 		EntityManager conn = getConn();
-		Player player = getConn().find(Player.class, name);
+		Player player = conn.find(Player.class, name);
 		conn.close();
 		return player;
 	}
@@ -90,7 +90,7 @@ public class HibernateSQLiteUtil implements DBUtil {
 	@Override
 	public List<Player> getPlayers() {
 		EntityManager conn = getConn();
-		List<Player> players = getConn().createQuery("from Player").getResultList();
+		List<Player> players = conn.createQuery("from Player").getResultList();
 		conn.close();
 		return players;
 	}
@@ -110,17 +110,21 @@ public class HibernateSQLiteUtil implements DBUtil {
 	}
 
 	@Override
-	public void close() {
+	public void deadPool() {
 		if (dbFac == null)
 			return;
 		if (!dbFac.isOpen())
 			return;
 		dbFac.close();
 	}
-
-	private EntityManager getConn() {
+	
+	public void openPool() {
 		if (dbFac == null)
 			dbFac = Persistence.createEntityManagerFactory("SteamClone");
+	}
+
+	private EntityManager getConn() {
+		openPool();
 		return dbFac.createEntityManager();
 	}
 

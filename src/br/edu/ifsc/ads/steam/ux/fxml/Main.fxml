@@ -22,7 +22,7 @@
 				<Menu text="%user">
 					<items>
 						<MenuItem onAction="#openProfile" text="%profile" />
-						<MenuItem onAction="#openGames" text="%games" />
+						<MenuItem text="%games" />
 						<MenuItem text="%friends" />
 					</items>
 				</Menu>
